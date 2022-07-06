@@ -9,12 +9,12 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 private data class IndexedWeatherData(
-    val index : Int,
+    val index: Int,
     val data: WeatherData
 )
 
-fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>>{
-    return time.mapIndexed{index, time ->
+fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
+    return time.mapIndexed { index, time ->
         val temperature = temperatures[index]
         val weatherCode = weatherCodes[index]
         val windSpeed = windSpeeds[index]
@@ -40,7 +40,7 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>>{
     }
 }
 
-fun WeatherDto.toWeatherInfo(): WeatherInfo{
+fun WeatherDto.toWeatherInfo(): WeatherInfo {
     val weatherDataMap = weatherData.toWeatherDataMap()
     val now = LocalDateTime.now()
     val currentWeatherData = weatherDataMap[0]?.find {
